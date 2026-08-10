@@ -1,0 +1,246 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout>
+	<main>
+		<nav>
+			<a href="/">Camacho Larrondo</a>
+
+			<div>
+				<a href="#about">About</a>
+				<a href="#projects">Projects</a>
+				<a href="#blog">Blog</a>
+			</div>
+		</nav>
+
+		<section class="hero">
+			<p class="eyebrow">Software Engineer</p>
+
+			<h1>
+				Hi, I'm Leire.
+			</h1>
+
+			<p class="description">
+				I work with C++, graphics, algorithms and software engineering.
+				This is where I share my projects, ideas and articles.
+			</p>
+
+			<div class="buttons">
+				<a href="#projects" class="button primary">
+					View my projects
+				</a>
+
+				<a href="#blog" class="button">
+					Read my blog
+				</a>
+			</div>
+		</section>
+
+		<section id="about">
+			<h2>About me</h2>
+
+			<p>
+				I'm a software engineering student interested in C++,
+				graphics programming, algorithms and systems.
+			</p>
+		</section>
+
+		<section id="projects">
+			<h2>Projects</h2>
+
+			<div class="projects">
+				<article>
+					<h3>Graphics Engine</h3>
+					<p>
+						A custom C++ rendering engine and editor focused
+						on real-time graphics.
+					</p>
+				</article>
+
+				<article>
+					<h3>Game AI</h3>
+					<p>
+						Artificial intelligence algorithms and decision
+						making for board games.
+					</p>
+				</article>
+
+				<article>
+					<h3>Algorithms</h3>
+					<p>
+						Implementations and experiments with algorithms,
+						data structures and optimization.
+					</p>
+				</article>
+			</div>
+		</section>
+
+		<section id="blog">
+			<h2>Blog</h2>
+
+			<article class="blog-post">
+				<p class="date">Coming soon</p>
+
+				<h3>C++ and software engineering</h3>
+
+				<p>
+					Articles about C++, graphics programming, algorithms,
+					optimization and things I learn while developing.
+				</p>
+
+				<a href="#">Read article →</a>
+			</article>
+		</section>
+
+		<footer>
+			<p>© 2026 Leire Camacho Larrondo</p>
+		</footer>
+	</main>
+</Layout>
+
+<style>
+	main {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 0 2rem;
+	}
+
+	nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 2rem 0;
+	}
+
+	nav a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	nav div {
+		display: flex;
+		gap: 2rem;
+	}
+
+	.hero {
+		min-height: 75vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.eyebrow {
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		opacity: 0.6;
+	}
+
+	h1 {
+		font-size: clamp(4rem, 10vw, 8rem);
+		line-height: 0.9;
+		margin: 1rem 0 2rem;
+	}
+
+	.description {
+		max-width: 650px;
+		font-size: 1.3rem;
+		line-height: 1.6;
+		opacity: 0.7;
+	}
+
+	.buttons {
+		display: flex;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+
+	.button {
+		padding: 0.9rem 1.4rem;
+		border: 1px solid #444;
+		border-radius: 8px;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.button.primary {
+		background: #111;
+		color: white;
+	}
+
+	section:not(.hero) {
+		padding: 7rem 0;
+	}
+
+	h2 {
+		font-size: 3rem;
+		margin-bottom: 2rem;
+	}
+
+	.projects {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+	}
+
+	.projects article {
+		border: 1px solid #ddd;
+		border-radius: 12px;
+		padding: 2rem;
+		min-height: 200px;
+	}
+
+	.projects h3 {
+		font-size: 1.5rem;
+	}
+
+	.projects p,
+	.blog-post p {
+		line-height: 1.6;
+		opacity: 0.7;
+	}
+
+	.blog-post {
+		border-top: 1px solid #ddd;
+		padding-top: 2rem;
+	}
+
+	.date {
+		text-transform: uppercase;
+		font-size: 0.8rem;
+		letter-spacing: 0.1em;
+	}
+
+	.blog-post a {
+		color: inherit;
+	}
+
+	footer {
+		padding: 4rem 0;
+		border-top: 1px solid #ddd;
+		opacity: 0.6;
+	}
+
+	@media (max-width: 700px) {
+		nav {
+			align-items: flex-start;
+			gap: 1rem;
+		}
+
+		nav div {
+			gap: 1rem;
+		}
+
+		.projects {
+			grid-template-columns: 1fr;
+		}
+
+		.buttons {
+			flex-direction: column;
+		}
+
+		.button {
+			text-align: center;
+		}
+	}
+</style>
