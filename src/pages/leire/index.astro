@@ -1,246 +1,1420 @@
 ---
+
 import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+const categories = [
+{
+id: 'cpp-fundamentals',
+number: '01',
+title: 'C++ Fundamentals',
+description:
+'The foundations of C++ — memory, objects, pointers, references, classes and the language concepts behind it.',
+},
+{
+id: 'modern-cpp',
+number: '02',
+title: 'Modern C++',
+description:
+'RAII, move semantics, templates, STL and the modern features that make C++ expressive and powerful.',
+},
+{
+id: 'performance',
+number: '03',
+title: 'Performance',
+description:
+'Optimization, memory, cache locality, profiling, multithreading and performance-oriented programming.',
+},
+{
+id: 'algorithms',
+number: '04',
+title: 'Algorithms',
+description:
+'Data structures, algorithms, computational geometry and implementations built from scratch.',
+},
+{
+id: 'graphics',
+number: '05',
+title: 'Game & Graphics',
+description:
+'Rendering, OpenGL, shaders, game AI, engine architecture and graphics programming.',
+},
+];
+
+const groupedPosts = categories.map((category) => ({
+...category,
+posts: posts
+.filter((post) => post.data.category === category.id)
+.sort(
+(a, b) =>
+b.data.date.valueOf() - a.data.date.valueOf()
+),
+}));
 ---
 
 <Layout>
-	<main>
-		<nav>
-			<a href="/">Camacho Larrondo</a>
+<main class="leire-page">
 
-			<div>
-				<a href="#about">About</a>
-				<a href="#projects">Projects</a>
-				<a href="#blog">Blog</a>
-			</div>
-		</nav>
+	<div class="background-glow glow-one"></div>
+	<div class="background-glow glow-two"></div>
 
-		<section class="hero">
-			<p class="eyebrow">Software Engineer</p>
+	<!-- Navigation -->
 
-			<h1>
-				Hi, I'm Leire.
-			</h1>
+	<nav>
 
-			<p class="description">
-				I work with C++, graphics, algorithms and software engineering.
-				This is where I share my projects, ideas and articles.
-			</p>
+		<a href="/" class="back">←</a>
 
-			<div class="buttons">
-				<a href="#projects" class="button primary">
-					View my projects
-				</a>
+		<div class="logo">
+			CL
+		</div>
 
-				<a href="#blog" class="button">
-					Read my blog
-				</a>
-			</div>
-		</section>
+		<span>
+			Leire Camacho
+		</span>
 
-		<section id="about">
-			<h2>About me</h2>
+		<div class="nav-right">
+			C++ · SOFTWARE ENGINEERING
+		</div>
 
-			<p>
-				I'm a software engineering student interested in C++,
-				graphics programming, algorithms and systems.
-			</p>
-		</section>
+	</nav>
 
-		<section id="projects">
-			<h2>Projects</h2>
 
-			<div class="projects">
-				<article>
-					<h3>Graphics Engine</h3>
-					<p>
-						A custom C++ rendering engine and editor focused
-						on real-time graphics.
-					</p>
-				</article>
+	<!-- Hero -->
 
-				<article>
-					<h3>Game AI</h3>
-					<p>
-						Artificial intelligence algorithms and decision
-						making for board games.
-					</p>
-				</article>
+	<section class="hero">
 
-				<article>
-					<h3>Algorithms</h3>
-					<p>
-						Implementations and experiments with algorithms,
-						data structures and optimization.
-					</p>
-				</article>
-			</div>
-		</section>
+		<p class="eyebrow">
+			SOFTWARE ENGINEERING · C++ · GRAPHICS
+		</p>
 
-		<section id="blog">
-			<h2>Blog</h2>
+		<h1>
+			Building.<br />
+			<span>Learning.</span><br />
+			Understanding.
+		</h1>
 
-			<article class="blog-post">
-				<p class="date">Coming soon</p>
+		<p class="intro">
+			A personal collection of everything I've learned,
+			built and explored throughout my journey in
+			software engineering.
+		</p>
 
-				<h3>C++ and software engineering</h3>
+	</section>
+
+
+	<!-- About -->
+
+	<section class="about">
+
+		<div class="section-label">
+			<span>01</span>
+			<span>WHY THIS BLOG?</span>
+		</div>
+
+		<div class="about-content">
+
+			<h2>
+				An excuse to
+				<span>keep learning.</span>
+			</h2>
+
+			<div class="about-text">
 
 				<p>
-					Articles about C++, graphics programming, algorithms,
-					optimization and things I learn while developing.
+					This blog is, in a way, an excuse.
 				</p>
 
-				<a href="#">Read article →</a>
-			</article>
-		</section>
+				<p>
+					An excuse to gather all the knowledge
+					I've accumulated throughout my journey
+					in software engineering, put it into words,
+					and give it a place where I can come back to it.
+				</p>
 
-		<footer>
-			<p>© 2026 Leire Camacho Larrondo</p>
-		</footer>
-	</main>
+				<p>
+					I've learned a lot through university,
+					projects, experimentation, and simply trying
+					to understand how things work. Some of that
+					knowledge stays in code, some in notes, and
+					some eventually gets forgotten.
+				</p>
+
+				<p>
+					Writing about it is my way of keeping it.
+				</p>
+
+			</div>
+
+		</div>
+
+	</section>
+
+
+	<!-- About me -->
+
+	<section class="summary">
+
+		<div class="section-label">
+			<span>02</span>
+			<span>ABOUT ME</span>
+		</div>
+
+		<div class="summary-grid">
+
+			<div class="summary-title">
+
+				<h2>
+					Understanding
+					<span>how things work.</span>
+				</h2>
+
+			</div>
+
+			<div class="summary-content">
+
+				<p>
+					I'm a software engineering student interested
+					in understanding what happens beneath the
+					surface.
+				</p>
+
+				<p>
+					My main interests are C++, algorithms,
+					performance, low-level programming and
+					graphics. I enjoy building things from scratch,
+					experimenting with different approaches and
+					understanding the reasoning behind the tools
+					and techniques I use.
+				</p>
+
+				<div class="skills">
+
+					<span>C++</span>
+					<span>Algorithms</span>
+					<span>Performance</span>
+					<span>Graphics</span>
+					<span>Low-Level</span>
+					<span>Game Development</span>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+
+	<!-- Blog -->
+
+	<section class="explore">
+
+		<div class="section-label">
+			<span>03</span>
+			<span>THE BLOG</span>
+		</div>
+
+		<div class="explore-header">
+
+			<div>
+
+				<h2>
+					Things I've
+					<span>learned.</span>
+				</h2>
+
+			</div>
+
+			<p>
+				Notes, experiments and explanations about
+				the things I'm currently learning and building.
+			</p>
+
+		</div>
+
+
+		<!-- Blog Index -->
+
+		<div class="blog-layout">
+
+			<!-- Category navigation -->
+
+			<aside class="blog-index">
+
+				<div class="index-label">
+					<span>INDEX</span>
+					<span>{categories.length}</span>
+				</div>
+
+				<div class="index-line"></div>
+
+				<div class="category-list">
+
+					{groupedPosts.map((category, index) => (
+
+						<button
+							class:list={{
+								category: true,
+								active: index === 0,
+							}}
+							data-category={category.id}
+						>
+
+							<span class="category-number">
+								{category.number}
+							</span>
+
+							<span class="category-name">
+								{category.title}
+							</span>
+
+							<span class="category-count">
+								{category.posts.length}
+							</span>
+
+						</button>
+
+					))}
+
+				</div>
+
+			</aside>
+
+
+			<!-- Selected category -->
+
+			<div class="blog-content">
+
+				{groupedPosts.map((category, index) => (
+
+					<div
+						class:list={{
+							'article-panel': true,
+							active: index === 0,
+						}}
+						data-panel={category.id}
+					>
+
+						<div class="panel-heading">
+
+							<div>
+
+								<span class="panel-number">
+									{category.number}
+								</span>
+
+								<h3>
+									{category.title}
+								</h3>
+
+							</div>
+
+							<span class="panel-count">
+								{category.posts.length}
+								{category.posts.length === 1
+									? ' ARTICLE'
+									: ' ARTICLES'}
+							</span>
+
+						</div>
+
+						<p class="panel-description">
+							{category.description}
+						</p>
+
+
+						<div class="articles">
+
+							{category.posts.length > 0 ? (
+
+								category.posts.map(
+									(post, articleIndex) => (
+
+										<a
+											href={`/leire/articles/${post.id}`}
+											class="article"
+										>
+
+											<span class="article-number">
+												{String(
+													articleIndex + 1
+												).padStart(2, '0')}
+											</span>
+
+											<div class="article-content">
+
+												<h4>
+													{post.data.title}
+												</h4>
+
+												<p>
+													{post.data.description}
+												</p>
+
+											</div>
+
+											<span class="article-arrow">
+												↗
+											</span>
+
+										</a>
+
+									)
+								)
+
+							) : (
+
+								<div class="empty-state">
+									No articles yet.
+								</div>
+
+							)}
+
+						</div>
+
+					</div>
+
+				))}
+
+			</div>
+
+		</div>
+
+	</section>
+
+
+	<!-- Footer -->
+
+	<footer>
+
+		<span>
+			© 2026 Leire Camacho
+		</span>
+
+		<span>
+			Software Engineering · C++ · Bilbao
+		</span>
+
+	</footer>
+
+</main>
 </Layout>
 
+<script>
+
+	const categories =
+		document.querySelectorAll<HTMLButtonElement>(
+			'.category'
+		);
+
+	const panels =
+		document.querySelectorAll<HTMLElement>(
+			'.article-panel'
+		);
+
+	categories.forEach((category) => {
+
+		category.addEventListener('click', () => {
+
+			const target =
+				category.dataset.category;
+
+			if (!target) return;
+
+			categories.forEach((item) => {
+				item.classList.remove('active');
+			});
+
+			panels.forEach((panel) => {
+				panel.classList.remove('active');
+			});
+
+			category.classList.add('active');
+
+			const panel =
+				document.querySelector<HTMLElement>(
+					`.article-panel[data-panel="${target}"]`
+				);
+
+			panel?.classList.add('active');
+
+		});
+
+	});
+
+</script>
+
 <style>
-	main {
-		max-width: 1100px;
-		margin: 0 auto;
-		padding: 0 2rem;
+
+	:global(body) {
+
+		margin: 0;
+
+		background: #08090b;
+
+		color: #f2f2f2;
+
+		font-family:
+			Inter,
+			-apple-system,
+			BlinkMacSystemFont,
+			"Segoe UI",
+			sans-serif;
+
 	}
+
+
+	.leire-page {
+
+		position: relative;
+
+		min-height: 100vh;
+
+		box-sizing: border-box;
+
+		padding: 0 6vw;
+
+		overflow: hidden;
+
+		background:
+			radial-gradient(
+				circle at 20% 20%,
+				rgba(255,255,255,0.045),
+				transparent 30%
+			),
+			#08090b;
+
+	}
+
+
+	/* Background */
+
+	.background-glow {
+
+		position: absolute;
+
+		width: 500px;
+		height: 500px;
+
+		border-radius: 50%;
+
+		filter: blur(120px);
+
+		pointer-events: none;
+
+		opacity: 0.12;
+
+	}
+
+	.glow-one {
+
+		top: -250px;
+		left: -200px;
+
+		background: #7c3aed;
+
+	}
+
+	.glow-two {
+
+		right: -250px;
+		bottom: 20%;
+
+		background: #2563eb;
+
+	}
+
+
+	/* Navigation */
 
 	nav {
+
+		position: relative;
+
+		z-index: 2;
+
 		display: flex;
-		justify-content: space-between;
+
 		align-items: center;
-		padding: 2rem 0;
+
+		gap: 1rem;
+
+		padding-top: 2rem;
+
+		font-size: 0.8rem;
+
+		letter-spacing: 0.12em;
+
+		text-transform: uppercase;
+
+		color: rgba(255,255,255,0.6);
+
 	}
 
-	nav a {
-		color: inherit;
+	.back {
+
+		display: grid;
+
+		place-items: center;
+
+		width: 38px;
+		height: 38px;
+
+		border: 1px solid rgba(255,255,255,0.12);
+
+		border-radius: 50%;
+
+		color: rgba(255,255,255,0.6);
+
 		text-decoration: none;
+
+		transition: 0.3s ease;
+
 	}
 
-	nav div {
-		display: flex;
-		gap: 2rem;
+	.back:hover {
+
+		border-color: rgba(255,255,255,0.35);
+
+		color: white;
+
+		transform: translateX(-3px);
+
 	}
+
+	.logo {
+
+		display: grid;
+
+		place-items: center;
+
+		width: 38px;
+		height: 38px;
+
+		border: 1px solid rgba(255,255,255,0.2);
+
+		border-radius: 50%;
+
+		font-size: 0.7rem;
+
+		font-weight: 600;
+
+		color: white;
+
+	}
+
+	.nav-right {
+
+		margin-left: auto;
+
+		font-size: 0.65rem;
+
+		color: rgba(255,255,255,0.3);
+
+	}
+
+
+	/* Hero */
 
 	.hero {
-		min-height: 75vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+
+		position: relative;
+
+		z-index: 1;
+
+		max-width: 1100px;
+
+		padding-top: 14vh;
+
+		padding-bottom: 15vh;
+
 	}
 
 	.eyebrow {
-		text-transform: uppercase;
-		letter-spacing: 0.15em;
-		opacity: 0.6;
+
+		margin: 0 0 1.5rem;
+
+		font-size: 0.72rem;
+
+		font-weight: 600;
+
+		letter-spacing: 0.2em;
+
+		color: rgba(255,255,255,0.4);
+
 	}
 
-	h1 {
-		font-size: clamp(4rem, 10vw, 8rem);
-		line-height: 0.9;
-		margin: 1rem 0 2rem;
+	.hero h1 {
+
+		margin: 0;
+
+		font-size: clamp(4rem,10vw,9rem);
+
+		font-weight: 500;
+
+		letter-spacing: -0.07em;
+
+		line-height: 0.86;
+
 	}
 
-	.description {
-		max-width: 650px;
-		font-size: 1.3rem;
-		line-height: 1.6;
-		opacity: 0.7;
+	.hero h1 span {
+
+		color: rgba(255,255,255,0.3);
+
 	}
 
-	.buttons {
-		display: flex;
-		gap: 1rem;
-		margin-top: 2rem;
+	.intro {
+
+		max-width: 620px;
+
+		margin: 3.5rem 0 0;
+
+		font-size: clamp(1.05rem,2vw,1.3rem);
+
+		line-height: 1.7;
+
+		color: rgba(255,255,255,0.5);
+
 	}
 
-	.button {
-		padding: 0.9rem 1.4rem;
-		border: 1px solid #444;
-		border-radius: 8px;
-		text-decoration: none;
-		color: inherit;
-	}
 
-	.button.primary {
-		background: #111;
-		color: white;
-	}
+	/* Sections */
 
-	section:not(.hero) {
+	.about,
+	.summary,
+	.explore {
+
+		position: relative;
+
+		z-index: 1;
+
+		max-width: 1200px;
+
+		margin: 0 auto;
+
 		padding: 7rem 0;
+
+		border-top:
+			1px solid rgba(255,255,255,0.08);
+
 	}
 
-	h2 {
-		font-size: 3rem;
-		margin-bottom: 2rem;
-	}
+	.section-label {
 
-	.projects {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		display: flex;
+
 		gap: 1.5rem;
+
+		margin-bottom: 4rem;
+
+		font-size: 0.68rem;
+
+		font-weight: 600;
+
+		letter-spacing: 0.18em;
+
+		color: rgba(255,255,255,0.3);
+
 	}
 
-	.projects article {
-		border: 1px solid #ddd;
-		border-radius: 12px;
-		padding: 2rem;
-		min-height: 200px;
+	.section-label span:first-child {
+
+		color: rgba(255,255,255,0.6);
+
 	}
 
-	.projects h3 {
-		font-size: 1.5rem;
+
+	/* About */
+
+	.about-content {
+
+		display: grid;
+
+		grid-template-columns: 1fr 1fr;
+
+		gap: 8rem;
+
 	}
 
-	.projects p,
-	.blog-post p {
-		line-height: 1.6;
-		opacity: 0.7;
+	.about h2,
+	.summary h2,
+	.explore h2 {
+
+		margin: 0;
+
+		font-size: clamp(2.5rem,5vw,5rem);
+
+		font-weight: 400;
+
+		letter-spacing: -0.06em;
+
+		line-height: 0.95;
+
 	}
 
-	.blog-post {
-		border-top: 1px solid #ddd;
-		padding-top: 2rem;
+	.about h2 span,
+	.summary h2 span,
+	.explore h2 span {
+
+		display: block;
+
+		color: rgba(255,255,255,0.3);
+
 	}
 
-	.date {
-		text-transform: uppercase;
+	.about-text {
+
+		max-width: 550px;
+
+	}
+
+	.about-text p,
+	.summary-content > p {
+
+		margin: 0 0 1.5rem;
+
+		font-size: 1rem;
+
+		line-height: 1.8;
+
+		color: rgba(255,255,255,0.5);
+
+	}
+
+	.about-text p:first-child {
+
+		color: rgba(255,255,255,0.8);
+
+		font-size: 1.15rem;
+
+	}
+
+
+	/* Summary */
+
+	.summary-grid {
+
+		display: grid;
+
+		grid-template-columns: 1fr 1fr;
+
+		gap: 8rem;
+
+	}
+
+	.summary-content {
+
+		max-width: 550px;
+
+	}
+
+	.skills {
+
+		display: flex;
+
+		flex-wrap: wrap;
+
+		gap: 0.6rem;
+
+		margin-top: 2.5rem;
+
+	}
+
+	.skills span {
+
+		padding: 0.55rem 0.9rem;
+
+		border:
+			1px solid rgba(255,255,255,0.1);
+
+		border-radius: 100px;
+
+		font-size: 0.7rem;
+
+		letter-spacing: 0.08em;
+
+		color: rgba(255,255,255,0.45);
+
+		background:
+			rgba(255,255,255,0.025);
+
+	}
+
+
+	/* Explore */
+
+	.explore-header {
+
+		display: flex;
+
+		align-items: flex-end;
+
+		justify-content: space-between;
+
+		gap: 4rem;
+
+		margin-bottom: 6rem;
+
+	}
+
+	.explore-header h2 {
+
+		max-width: 600px;
+
+	}
+
+	.explore-header p {
+
+		max-width: 350px;
+
+		margin: 0;
+
+		font-size: 0.95rem;
+
+		line-height: 1.7;
+
+		color: rgba(255,255,255,0.4);
+
+	}
+
+
+	/* Blog */
+
+	.blog-layout {
+
+		display: grid;
+
+		grid-template-columns: 300px 1fr;
+
+		gap: 6rem;
+
+		align-items: start;
+
+	}
+
+
+	/* Index */
+
+	.blog-index {
+
+		position: sticky;
+
+		top: 3rem;
+
+	}
+
+	.index-label {
+
+		display: flex;
+
+		justify-content: space-between;
+
+		padding-bottom: 1rem;
+
+		font-size: 0.65rem;
+
+		font-weight: 600;
+
+		letter-spacing: 0.18em;
+
+		color: rgba(255,255,255,0.3);
+
+	}
+
+	.index-line {
+
+		width: 100%;
+
+		height: 1px;
+
+		margin-bottom: 1rem;
+
+		background:
+			rgba(255,255,255,0.1);
+
+	}
+
+	.category-list {
+
+		display: flex;
+
+		flex-direction: column;
+
+	}
+
+	.category {
+
+		position: relative;
+
+		display: grid;
+
+		grid-template-columns: 35px 1fr 30px;
+
+		align-items: center;
+
+		width: 100%;
+
+		padding: 1.2rem 0;
+
+		border: 0;
+
+		border-bottom:
+			1px solid rgba(255,255,255,0.06);
+
+		background: transparent;
+
+		color: rgba(255,255,255,0.35);
+
+		text-align: left;
+
+		font-family: inherit;
+
+		cursor: pointer;
+
+		transition:
+			color 0.3s ease,
+			padding 0.3s ease;
+
+	}
+
+	.category::before {
+
+		content: "";
+
+		position: absolute;
+
+		left: -1rem;
+
+		width: 2px;
+
+		height: 0;
+
+		background: white;
+
+		transition: height 0.3s ease;
+
+	}
+
+	.category:hover {
+
+		color: rgba(255,255,255,0.75);
+
+		padding-left: 0.5rem;
+
+	}
+
+	.category.active {
+
+		color: white;
+
+		padding-left: 0.5rem;
+
+	}
+
+	.category.active::before {
+
+		height: 60%;
+
+	}
+
+	.category-number {
+
+		font-size: 0.65rem;
+
+		letter-spacing: 0.12em;
+
+		color: rgba(255,255,255,0.25);
+
+	}
+
+	.category-name {
+
+		font-size: 0.9rem;
+
+		font-weight: 400;
+
+	}
+
+	.category-count {
+
+		justify-self: end;
+
+		font-size: 0.6rem;
+
+		color: rgba(255,255,255,0.2);
+
+	}
+
+
+	/* Blog content */
+
+	.blog-content {
+
+		min-width: 0;
+
+	}
+
+	.article-panel {
+
+		display: none;
+
+	}
+
+	.article-panel.active {
+
+		display: block;
+
+		animation: panel-in 0.35s ease;
+
+	}
+
+	@keyframes panel-in {
+
+		from {
+
+			opacity: 0;
+
+			transform: translateY(10px);
+
+		}
+
+		to {
+
+			opacity: 1;
+
+			transform: translateY(0);
+
+		}
+
+	}
+
+
+	/* Panel heading */
+
+	.panel-heading {
+
+		display: flex;
+
+		align-items: flex-start;
+
+		justify-content: space-between;
+
+		gap: 2rem;
+
+		padding-bottom: 1.5rem;
+
+		border-bottom:
+			1px solid rgba(255,255,255,0.1);
+
+	}
+
+	.panel-number {
+
+		font-size: 0.65rem;
+
+		letter-spacing: 0.15em;
+
+		color: rgba(255,255,255,0.3);
+
+	}
+
+	.panel-heading h3 {
+
+		margin: 0.5rem 0 0;
+
+		font-size: clamp(2rem,4vw,3.5rem);
+
+		font-weight: 400;
+
+		letter-spacing: -0.05em;
+
+	}
+
+	.panel-count {
+
+		padding-top: 0.3rem;
+
+		font-size: 0.65rem;
+
+		letter-spacing: 0.12em;
+
+		color: rgba(255,255,255,0.25);
+
+		white-space: nowrap;
+
+	}
+
+	.panel-description {
+
+		max-width: 600px;
+
+		margin: 1.5rem 0 3rem;
+
+		font-size: 0.9rem;
+
+		line-height: 1.7;
+
+		color: rgba(255,255,255,0.4);
+
+	}
+
+
+	/* Articles */
+
+	.articles {
+
+		border-top:
+			1px solid rgba(255,255,255,0.06);
+
+	}
+
+	.article {
+
+		display: grid;
+
+		grid-template-columns: 40px 1fr 30px;
+
+		align-items: center;
+
+		gap: 1rem;
+
+		padding: 1.5rem 0;
+
+		border-bottom:
+			1px solid rgba(255,255,255,0.06);
+
+		color: white;
+
+		text-decoration: none;
+
+		transition:
+			padding 0.3s ease;
+
+	}
+
+	.article:hover {
+
+		padding-left: 0.5rem;
+
+		padding-right: 0.5rem;
+
+	}
+
+	.article-number {
+
+		font-size: 0.65rem;
+
+		color: rgba(255,255,255,0.25);
+
+	}
+
+	.article-content h4 {
+
+		margin: 0;
+
+		font-size: 1rem;
+
+		font-weight: 400;
+
+	}
+
+	.article-content p {
+
+		margin: 0.35rem 0 0;
+
 		font-size: 0.8rem;
-		letter-spacing: 0.1em;
+
+		line-height: 1.5;
+
+		color: rgba(255,255,255,0.3);
+
+		transition: color 0.3s ease;
+
 	}
 
-	.blog-post a {
-		color: inherit;
+	.article:hover .article-content p {
+
+		color: rgba(255,255,255,0.5);
+
 	}
+
+	.article-arrow {
+
+		justify-self: end;
+
+		font-size: 1.1rem;
+
+		color: rgba(255,255,255,0.25);
+
+		transition:
+			transform 0.3s ease,
+			color 0.3s ease;
+
+	}
+
+	.article:hover .article-arrow {
+
+		transform: translate(4px,-4px);
+
+		color: white;
+
+	}
+
+	.empty-state {
+
+		padding: 3rem 0;
+
+		font-size: 0.85rem;
+
+		color: rgba(255,255,255,0.25);
+
+	}
+
+
+	/* Footer */
 
 	footer {
-		padding: 4rem 0;
-		border-top: 1px solid #ddd;
-		opacity: 0.6;
+
+		display: flex;
+
+		justify-content: space-between;
+
+		max-width: 1200px;
+
+		margin: 0 auto;
+
+		padding: 2rem 0;
+
+		border-top:
+			1px solid rgba(255,255,255,0.08);
+
+		font-size: 0.7rem;
+
+		letter-spacing: 0.08em;
+
+		text-transform: uppercase;
+
+		color: rgba(255,255,255,0.3);
+
 	}
 
-	@media (max-width: 700px) {
-		nav {
-			align-items: flex-start;
-			gap: 1rem;
+
+	/* Mobile */
+
+	@media (max-width: 800px) {
+
+		.leire-page {
+
+			padding: 0 1.5rem;
+
 		}
 
-		nav div {
-			gap: 1rem;
+		.nav-right {
+
+			display: none;
+
 		}
 
-		.projects {
+		.hero {
+
+			padding-top: 12vh;
+
+			padding-bottom: 12vh;
+
+		}
+
+		.hero h1 {
+
+			font-size: clamp(4rem,18vw,7rem);
+
+		}
+
+		.about,
+		.summary,
+		.explore {
+
+			padding: 5rem 0;
+
+		}
+
+		.about-content,
+		.summary-grid {
+
 			grid-template-columns: 1fr;
+
+			gap: 3rem;
+
 		}
 
-		.buttons {
+		.explore-header {
+
 			flex-direction: column;
+
+			align-items: flex-start;
+
+			gap: 2rem;
+
+			margin-bottom: 4rem;
+
 		}
 
-		.button {
-			text-align: center;
+		.blog-layout {
+
+			grid-template-columns: 1fr;
+
+			gap: 3rem;
+
 		}
+
+		.blog-index {
+
+			position: relative;
+
+			top: auto;
+
+		}
+
+		.category {
+
+			padding: 1rem 0;
+
+		}
+
+		.panel-heading h3 {
+
+			font-size: 2rem;
+
+		}
+
+		.panel-count {
+
+			display: none;
+
+		}
+
+		.article {
+
+			grid-template-columns: 30px 1fr 20px;
+
+		}
+
+		.article-content p {
+
+			font-size: 0.75rem;
+
+		}
+
+		footer {
+
+			flex-direction: column;
+
+			gap: 0.6rem;
+
+		}
+
 	}
+
 </style>

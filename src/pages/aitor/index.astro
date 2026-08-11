@@ -1,0 +1,438 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout>
+<main class="work-page">
+
+	<div class="background-glow glow-one"></div>
+	<div class="background-glow glow-two"></div>
+
+	<nav>
+
+		<a href="/" class="back">←</a>
+
+		<div class="logo">
+			CL
+		</div>
+
+		<span>
+			Aitor
+		</span>
+
+		<div class="nav-right">
+			SOFTWARE ENGINEERING
+		</div>
+
+	</nav>
+
+	<section class="work">
+
+		<p class="eyebrow">
+			WORK IN PROGRESS
+		</p>
+
+		<h1>
+			Something is<br />
+			<span>being built.</span>
+		</h1>
+
+		<p class="description">
+			This page is currently under construction.
+			Check back soon to see what I'm working on.
+		</p>
+
+		<a href="/" class="home-link">
+			<span>←</span>
+			Back to home
+		</a>
+
+	</section>
+
+	<footer>
+
+		<span>
+			© 2026 Aitor
+		</span>
+
+		<span>
+			Software Engineering
+		</span>
+
+	</footer>
+
+</main>
+
+</Layout>
+
+<style>
+
+	:global(body) {
+
+		margin: 0;
+
+		background: #08090b;
+
+		color: #f2f2f2;
+
+		font-family:
+			Inter,
+			-apple-system,
+			BlinkMacSystemFont,
+			"Segoe UI",
+			sans-serif;
+
+	}
+
+	.work-page {
+
+		position: relative;
+
+		min-height: 100vh;
+
+		box-sizing: border-box;
+
+		padding: 0 6vw;
+
+		overflow: hidden;
+
+		background:
+			radial-gradient(
+				circle at 20% 20%,
+				rgba(255,255,255,0.045),
+				transparent 30%
+			),
+			#08090b;
+
+	}
+
+	/* Background */
+
+	.background-glow {
+
+		position: absolute;
+
+		width: 500px;
+		height: 500px;
+
+		border-radius: 50%;
+
+		filter: blur(120px);
+
+		pointer-events: none;
+
+		opacity: 0.12;
+
+	}
+
+	.glow-one {
+
+		top: -250px;
+		left: -200px;
+
+		background: #7c3aed;
+
+	}
+
+	.glow-two {
+
+		right: -250px;
+		bottom: -250px;
+
+		background: #2563eb;
+
+	}
+
+	/* Navigation */
+
+	nav {
+
+		position: relative;
+
+		z-index: 2;
+
+		display: flex;
+
+		align-items: center;
+
+		gap: 1rem;
+
+		padding-top: 2rem;
+
+		font-size: 0.8rem;
+
+		letter-spacing: 0.12em;
+
+		text-transform: uppercase;
+
+		color: rgba(255,255,255,0.6);
+
+	}
+
+	.back {
+
+		display: grid;
+
+		place-items: center;
+
+		width: 38px;
+		height: 38px;
+
+		border: 1px solid rgba(255,255,255,0.12);
+
+		border-radius: 50%;
+
+		color: rgba(255,255,255,0.6);
+
+		text-decoration: none;
+
+		font-size: 1rem;
+
+		transition: 0.3s ease;
+
+	}
+
+	.back:hover {
+
+		border-color: rgba(255,255,255,0.35);
+
+		color: white;
+
+		transform: translateX(-3px);
+
+	}
+
+	.logo {
+
+		display: grid;
+
+		place-items: center;
+
+		width: 38px;
+		height: 38px;
+
+		border: 1px solid rgba(255,255,255,0.2);
+
+		border-radius: 50%;
+
+		font-size: 0.7rem;
+
+		font-weight: 600;
+
+		color: white;
+
+	}
+
+	.nav-right {
+
+		margin-left: auto;
+
+		font-size: 0.65rem;
+
+		color: rgba(255,255,255,0.3);
+
+	}
+
+	/* Main */
+
+	.work {
+
+		position: relative;
+
+		z-index: 1;
+
+		display: flex;
+
+		flex-direction: column;
+
+		justify-content: center;
+
+		min-height: calc(100vh - 150px);
+
+		max-width: 900px;
+
+		margin: 0 auto;
+
+		padding-bottom: 5rem;
+
+	}
+
+	.eyebrow {
+
+		margin: 0 0 1.5rem;
+
+		font-size: 0.7rem;
+
+		font-weight: 600;
+
+		letter-spacing: 0.2em;
+
+		color: rgba(255,255,255,0.35);
+
+	}
+
+	h1 {
+
+		margin: 0;
+
+		font-size: clamp(4rem, 10vw, 8rem);
+
+		font-weight: 500;
+
+		letter-spacing: -0.07em;
+
+		line-height: 0.88;
+
+	}
+
+	h1 span {
+
+		color: rgba(255,255,255,0.3);
+
+	}
+
+	.description {
+
+		max-width: 500px;
+
+		margin: 3rem 0 0;
+
+		font-size: 1.1rem;
+
+		line-height: 1.7;
+
+		color: rgba(255,255,255,0.45);
+
+	}
+
+	/* Back link */
+
+	.home-link {
+
+		display: inline-flex;
+
+		align-items: center;
+
+		gap: 0.7rem;
+
+		width: fit-content;
+
+		margin-top: 3rem;
+
+		padding: 0.8rem 1.2rem;
+
+		border: 1px solid rgba(255,255,255,0.12);
+
+		border-radius: 100px;
+
+		color: rgba(255,255,255,0.6);
+
+		text-decoration: none;
+
+		font-size: 0.75rem;
+
+		letter-spacing: 0.08em;
+
+		text-transform: uppercase;
+
+		transition:
+			border-color 0.3s ease,
+			color 0.3s ease,
+			transform 0.3s ease;
+
+	}
+
+	.home-link:hover {
+
+		border-color: rgba(255,255,255,0.35);
+
+		color: white;
+
+		transform: translateX(-3px);
+
+	}
+
+	.home-link span {
+
+		font-size: 1rem;
+
+	}
+
+	/* Footer */
+
+	footer {
+
+		position: relative;
+
+		z-index: 1;
+
+		display: flex;
+
+		justify-content: space-between;
+
+		max-width: 1200px;
+
+		margin: 0 auto;
+
+		padding: 2rem 0;
+
+		border-top:
+			1px solid rgba(255,255,255,0.08);
+
+		font-size: 0.7rem;
+
+		letter-spacing: 0.08em;
+
+		text-transform: uppercase;
+
+		color: rgba(255,255,255,0.3);
+
+	}
+
+	/* Mobile */
+
+	@media (max-width: 800px) {
+
+		.work-page {
+
+			padding: 0 1.5rem;
+
+		}
+
+		.nav-right {
+
+			display: none;
+
+		}
+
+		.work {
+
+			min-height: calc(100vh - 130px);
+
+			padding-bottom: 3rem;
+
+		}
+
+		h1 {
+
+			font-size: clamp(3.8rem, 18vw, 6rem);
+
+		}
+
+		.description {
+
+			font-size: 1rem;
+
+		}
+
+		footer {
+
+			flex-direction: column;
+
+			gap: 0.6rem;
+
+		}
+
+	}
+
+</style>

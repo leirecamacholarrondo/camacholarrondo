@@ -28,6 +28,9 @@ import Layout from '../layouts/Layout.astro';
 
 		<section class="profiles">
 			<a href="/leire" class="profile leire">
+				<!-- Profile image -->
+				<img src="/images/leire.jpg" alt="Leire Camacho" class="profile-image" />
+
 				<div class="profile-number">01</div>
 
 				<div class="profile-content">
@@ -43,6 +46,9 @@ import Layout from '../layouts/Layout.astro';
 			</a>
 
 			<a href="/aitor" class="profile aitor">
+				<!-- Profile image -->
+				<img src="/images/aitor.jpg" alt="Aitor Camacho" class="profile-image" />
+
 				<div class="profile-number">02</div>
 
 				<div class="profile-content">
@@ -76,6 +82,27 @@ import Layout from '../layouts/Layout.astro';
 			BlinkMacSystemFont,
 			"Segoe UI",
 			sans-serif;
+	}
+
+	/* Profile image */
+	.profile-image {
+		position: absolute;
+		z-index: 0;
+
+		inset: 0;
+
+		width: 100%;
+		height: 100%;
+
+		object-fit: cover;
+
+		opacity: 1;
+
+		transition: transform 0.5s ease;
+	}
+
+	.profile:hover .profile-image {
+		transform: scale(1.04);
 	}
 
 	.home {
@@ -239,16 +266,19 @@ import Layout from '../layouts/Layout.astro';
 		content: "";
 
 		position: absolute;
+		z-index: 1;
 		inset: 0;
 
-		background: radial-gradient(
-			circle at 80% 20%,
-			rgba(255, 255, 255, 0.08),
-			transparent 35%
+		background: linear-gradient(
+			to right,
+			rgba(8, 9, 11, 0.95) 0%,
+			rgba(8, 9, 11, 0.85) 25%,
+			rgba(8, 9, 11, 0.45) 45%,
+			rgba(8, 9, 11, 0.05) 65%,
+			transparent 100%
 		);
 
-		opacity: 0;
-		transition: opacity 0.35s ease;
+		pointer-events: none;
 	}
 
 	.profile:hover {
@@ -263,16 +293,12 @@ import Layout from '../layouts/Layout.astro';
 
 	.profile-number {
 		position: relative;
-		z-index: 1;
-
-		font-size: 0.75rem;
-		letter-spacing: 0.15em;
-		color: rgba(255, 255, 255, 0.35);
+		z-index: 2;
 	}
 
 	.profile-content {
 		position: relative;
-		z-index: 1;
+		z-index: 2;
 	}
 
 	.profile-label {
@@ -305,7 +331,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.arrow {
 		position: absolute;
-		z-index: 1;
+		z-index: 2;
 
 		right: 2rem;
 		bottom: 1.7rem;
